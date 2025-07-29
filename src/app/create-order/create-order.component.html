@@ -1,0 +1,72 @@
+<!-- Page Wrapper with Background Image -->
+<div class="min-h-screen flex items-center justify-center bg-cover bg-center p-4"
+     style="background-image: url('https://i.pinimg.com/736x/37/b6/60/37b660cb40988dda83c8d345f62c83da.jpg');">
+
+  <!-- Form Card -->
+  <div class="max-w-3xl w-full bg-white bg-opacity-10 backdrop-blur-md shadow-xl rounded-xl p-8 sm:p-10">
+
+    <!-- Heading -->
+    <h2 class="mb-8 text-center text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-pink-500 via-yellow-400 to-red-600 bg-clip-text text-transparent drop-shadow">
+      🍕 Build Your Pizza
+    </h2>
+
+    <form [formGroup]="orderForm" (ngSubmit)="submitOrder()" class="space-y-6">
+
+      <!-- Grid Row: Size & Base -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Size -->
+        <div>
+          <label class="block font-semibold mb-2 text-orange-100 text-lg">Select Size:</label>
+          <div *ngFor="let size of pizzaSizes" class="mb-2">
+            <label class="inline-flex items-center font-medium text-white">
+              <input type="radio" formControlName="size" [value]="size" class="mr-2 accent-red-500">
+              {{ size }}
+            </label>
+          </div>
+        </div>
+
+        <!-- Base -->
+        <div>
+          <label class="block font-semibold mb-2 text-orange-100 text-lg">Select Base:</label>
+          <div *ngFor="let base of pizzaBases" class="mb-2">
+            <label class="inline-flex items-center font-medium text-white">
+              <input type="radio" formControlName="base" [value]="base" class="mr-2 accent-yellow-400">
+              {{ base }}
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toppings Section -->
+      <div>
+        <label class="block font-semibold mb-2 text-gray-100 text-lg">Select Toppings (min 3):</label>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          <div *ngFor="let topping of pizzaToppings">
+            <label class="inline-flex items-center text-white font-medium">
+              <input type="checkbox" [value]="topping" (change)="onToppingChange($event)" class="mr-2 accent-green-500">
+              {{ topping }}
+            </label>
+          </div>
+        </div>
+        <p class="text-sm text-red-100 mt-2" *ngIf="orderForm.get('toppings')?.errors?.['minlength']">
+          Please select at least 3 toppings.
+        </p>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="text-center">
+      <button type="submit"
+  [disabled]="orderForm.invalid"
+  class="bg-gradient-to-r 
+         from-red-500 to-yellow-500 
+         hover:from-red-700 hover:to-yellow-600 
+         text-white font-bold px-6 py-2 rounded-full 
+         shadow-md hover:scale-105 hover:shadow-lg 
+         transition-all duration-300 disabled:opacity-50">
+  Submit Order
+</button>
+      </div>
+
+    </form>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
+
+  <!-- Background Slider -->
+  <div class="absolute top-0 left-0 w-full h-full z-0 overflow-hidden">
+    <div class="flex w-[300vw] h-full animate-continuous-slide">
+      <img src="https://i.pinimg.com/736x/37/b6/60/37b660cb40988dda83c8d345f62c83da.jpg"
+           class="w-screen h-full sm:h-screen object-cover flex-shrink-0" alt="Pizza 1">
+      <img src="https://i.pinimg.com/1200x/0c/54/c2/0c54c2e7148ea5ae05d702aa64c86451.jpg"
+           class="w-screen h-full sm:h-screen object-cover flex-shrink-0" alt="Pizza 2">
+      <img src="https://i.pinimg.com/736x/75/0a/1b/750a1b4ddf2f6208155e89fa394fe7aa.jpg"
+           class="w-screen h-full sm:h-screen object-cover flex-shrink-0" alt="Pizza 3">
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 z-10"></div>
+
+  <!-- Foreground Content -->
+  <div class="relative z-20 text-center max-w-3xl w-full px-6 text-white">
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6 leading-tight">
+      🍕 Create Your Own Pizza
+    </h1>
+    <p class="text-base sm:text-lg mb-6">
+      Why settle for someone else's pizza when you can make your own masterpiece? Choose your crust, pile on your favorite toppings, and craft a flavor that's 100% you.
+    </p>
+    <button routerLink="/createOrder" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full text-lg sm:text-xl transition duration-300 mb-8">
+      Create Your Own Pizza
+    </button>
+  </div>
+
+  <!-- Slide Animation CSS -->
+  <style>
+    @keyframes continuous-slide {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-200vw); }
+    }
+    .animate-continuous-slide {
+      animation: continuous-slide 30s linear infinite;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+  </style>
+</div>
