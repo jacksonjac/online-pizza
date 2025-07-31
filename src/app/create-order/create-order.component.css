@@ -1,0 +1,24 @@
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.floating {
+  animation: floatUpDown 3s ease-in-out infinite;
+}
+@keyframes floatLeftRight {
+  0%, 100% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+}
+
+.floating-lr {
+  animation: floatLeftRight 3s ease-in-out infinite;
+}

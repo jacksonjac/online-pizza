@@ -1,71 +1,94 @@
-<!-- Page Wrapper with Background Image -->
-<div class="min-h-screen flex items-center justify-center bg-cover bg-center p-4"
-     style="background-image: url('https://i.pinimg.com/736x/37/b6/60/37b660cb40988dda83c8d345f62c83da.jpg');">
+<div class="min-h-screen bg-cover bg-center flex items-center justify-center p-4 sm:p-6"
+  style="background-image: url('https://i.pinimg.com/736x/37/b6/60/37b660cb40988dda83c8d345f62c83da.jpg')">
+  <div class="bg-black bg-opacity-90 p-4 sm:p-8 rounded-xl shadow-lg w-full max-w-2xl">
 
-  <!-- Form Card -->
-  <div class="max-w-3xl w-full bg-white bg-opacity-10 backdrop-blur-md shadow-xl rounded-xl p-8 sm:p-10">
+    <h1 class="text-2xl sm:text-4xl font-bold text-center text-red-600 mb-8 sm:mb-10">🍕 Make Your Own Pizza</h1>
 
-    <!-- Heading -->
-    <h2 class="mb-8 text-center text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-pink-500 via-yellow-400 to-red-600 bg-clip-text text-transparent drop-shadow">
-      🍕 Build Your Pizza
-    </h2>
+    <form [formGroup]="orderForm" (ngSubmit)="submitOrder()" class="space-y-8 sm:space-y-10">
 
-    <form [formGroup]="orderForm" (ngSubmit)="submitOrder()" class="space-y-6">
+   <!-- Pizza Size -->
+<div class="p-4 sm:p-6 rounded-xl shadow-lg bg-black bg-opacity-20">
+  <label class="block font-bold text-gray-200 mb-4 sm:mb-6 text-xl sm:text-3xl">Choose Size:</label>
+  <div class="space-y-4 sm:space-y-6">
+    
+    <!-- Small -->
+    <label class="flex items-center gap-4">
+      <input type="radio" value="Small" formControlName="size" class="accent-yellow-400 scale-110" />
+      <span class="text-white text-base sm:text-xl">
+        Small <span class="text-xs sm:text-sm text-gray-300">(8 to 10 inch)</span>
+      </span>
+      <img
+  src="https://i.pinimg.com/1200x/06/e0/89/06e089e81d5f7311006355a2ed2fe043.jpg"
+  class="w-10 h-10 sm:w-14 sm:h-14 object-cover rounded-full ml-auto ring-2 ring-yellow-300 floating"
+  alt="Small Pizza" />
+    </label>
 
-      <!-- Grid Row: Size & Base -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Size -->
-        <div>
-          <label class="block font-semibold mb-2 text-orange-100 text-lg">Select Size:</label>
-          <div *ngFor="let size of pizzaSizes" class="mb-2">
-            <label class="inline-flex items-center font-medium text-white">
-              <input type="radio" formControlName="size" [value]="size" class="mr-2 accent-red-500">
-              {{ size }}
-            </label>
-          </div>
-        </div>
+    <!-- Medium -->
+    <label class="flex items-center gap-4">
+      <input type="radio" value="Medium" formControlName="size" class="accent-yellow-400 scale-110" />
+      <span class="text-white text-base sm:text-xl">
+        Medium <span class="text-xs sm:text-sm text-gray-300">(10 to 12 inch)</span>
+      </span>
+      <img
+        src="https://i.pinimg.com/1200x/06/e0/89/06e089e81d5f7311006355a2ed2fe043.jpg"
+        class="w-14 h-14 sm:w-20 sm:h-20 object-cover rounded-full ml-auto ring-2 ring-yellow-400 floating" 
+        alt="Medium Pizza" />
+    </label>
 
-        <!-- Base -->
-        <div>
-          <label class="block font-semibold mb-2 text-orange-100 text-lg">Select Base:</label>
-          <div *ngFor="let base of pizzaBases" class="mb-2">
-            <label class="inline-flex items-center font-medium text-white">
-              <input type="radio" formControlName="base" [value]="base" class="mr-2 accent-yellow-400">
-              {{ base }}
-            </label>
-          </div>
-        </div>
+    <!-- Large -->
+    <label class="flex items-center gap-4">
+      <input type="radio" value="Large" formControlName="size" class="accent-yellow-400 scale-110" />
+      <span class="text-white text-base sm:text-xl">
+        Large <span class="text-xs sm:text-sm text-gray-300">(12 to 14 inch)</span>
+      </span>
+      <img
+        src="https://i.pinimg.com/1200x/06/e0/89/06e089e81d5f7311006355a2ed2fe043.jpg"
+        class="w-20 h-20 sm:w-28 sm:h-28 object-cover rounded-full ml-auto ring-2 ring-yellow-500 floating"
+        alt="Large Pizza" />
+    </label>
+  </div>
+</div>
+
+
+      <!-- Pizza Base -->
+      <div class="p-4 sm:p-6 rounded-xl shadow-lg bg-black bg-opacity-70">
+        <label class="block font-semibold text-gray-100 mb-2 sm:mb-4 text-lg sm:text-2xl">Choose Base:</label>
+        <select formControlName="base"
+          class="w-full border rounded p-3 bg-black bg-opacity-100 text-white focus:outline-none focus:ring-2 focus:ring-red-400 text-base sm:text-lg">
+          <option value="">-- Select Base --</option>
+          <option *ngFor="let base of pizzaBases" [value]="base">{{ base }}</option>
+        </select>
       </div>
 
-      <!-- Toppings Section -->
-      <div>
-        <label class="block font-semibold mb-2 text-gray-100 text-lg">Select Toppings (min 3):</label>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
-          <div *ngFor="let topping of pizzaToppings">
-            <label class="inline-flex items-center text-white font-medium">
-              <input type="checkbox" [value]="topping" (change)="onToppingChange($event)" class="mr-2 accent-green-500">
-              {{ topping }}
-            </label>
-          </div>
-        </div>
-        <p class="text-sm text-red-100 mt-2" *ngIf="orderForm.get('toppings')?.errors?.['minlength']">
-          Please select at least 3 toppings.
-        </p>
-      </div>
+      <!-- Toppings -->
+<div class="p-4 sm:p-6 rounded-xl shadow-lg bg-black bg-opacity-70">
+  <label class="block font-bold text-gray-100 mb-4 sm:mb-6 text-xl sm:text-3xl">Choose Toppings:</label>
+  <div class="space-y-4 sm:space-y-6">
+    <label class="flex items-center gap-4" *ngFor="let topping of pizzaToppings">
+      <input type="checkbox" [value]="topping.name" (change)="onToppingChange($event)"
+        class="accent-red-500 scale-125 sm:scale-150" />
+      <span class="text-white text-lg sm:text-xl font-medium">{{ topping.name }}</span>
+      <img class='floating' [src]="topping.image" [alt]="topping.name"
+        class="w-14 h-14 sm:w-20 sm:h-20 object-cover rounded-lg ml-auto border border-white shadow" />
+    </label>
+  </div>
 
-      <!-- Submit Button -->
-      <div class="text-center">
-      <button type="submit"
-  [disabled]="orderForm.invalid"
-  class="bg-gradient-to-r 
-         from-red-500 to-yellow-500 
-         hover:from-red-700 hover:to-yellow-600 
-         text-white font-bold px-6 py-2 rounded-full 
-         shadow-md hover:scale-105 hover:shadow-lg 
-         transition-all duration-300 disabled:opacity-50">
-  Submit Order
-</button>
-      </div>
+  <div *ngIf="orderForm.get('toppings')?.invalid && orderForm.get('toppings')?.touched"
+    class="text-red-400 mt-2 text-sm">
+    Please select at least 3 toppings.
+  </div>
+</div>
+
+
+
+      <!-- Submit -->
+<div class="text-center">
+  <button mat-raised-button color="warn"
+    class="w-full py-3 text-lg font-semibold transition">
+    Submit
+  </button>
+</div>
+
 
     </form>
   </div>
