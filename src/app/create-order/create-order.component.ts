@@ -72,13 +72,13 @@ pizzaToppings = [
   submitOrder() {
     if (this.orderForm.valid) {
       console.log('✅ Pizza Order:', this.orderForm.value);
-      // Navigate or show summary here
+     
       this.service.postStubOrders(this.orderForm.value).subscribe(data =>{
         console.log("stored orders",data)
       })
       this.route.navigateByUrl('/summary');
     } else {
-      console.log('❌ Invalid Order:', this.orderForm.value);
+      console.log('Invalid Order:', this.orderForm.value);
       this.orderForm.markAllAsTouched();
       alert('Please complete the form:\n- Choose base\n- Choose size\n- Select at least 3 toppings');
     }

@@ -21,23 +21,12 @@
       ]
     },
     {
-      "id": "787b",
-      "base": "Thick Crust",
+      "id": "a4fe",
+      "base": "Neapolitan Crust",
       "size": "Small",
       "toppings": [
-        "Mushrooms",
-        "Olives",
-        "Onions"
-      ]
-    },
-    {
-      "id": "d8c5",
-      "base": "Sicilian Crust",
-      "size": "Medium",
-      "toppings": [
         "Pepperoni",
-        "Olives",
-        "Onions",
+        "Sausage",
         "Pineapple"
       ]
     }
