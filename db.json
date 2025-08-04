@@ -29,6 +29,26 @@
         "Sausage",
         "Pineapple"
       ]
+    },
+    {
+      "id": "79c2",
+      "base": "New York Style Crust",
+      "size": "Small",
+      "toppings": [
+        "Pepperoni",
+        "Olives",
+        "Onions"
+      ]
+    },
+    {
+      "id": "b9d4",
+      "base": "New York Style Crust",
+      "size": "Medium",
+      "toppings": [
+        "Pepperoni",
+        "Onions",
+        "Sausage"
+      ]
     }
   ]
 }

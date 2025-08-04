@@ -10,11 +10,15 @@ export class OrderService {
   
  private api = 'http://localhost:3000/orders';
 
-   getStubOrders(): Observable<any[]> {
-    return this.http.get<any[]>(this.api);
-  }
+  
 
-  postStubOrders(orderData:any):Observable<any[]>{
-    return this.http.post<any>(this.api,orderData)
+  postStubOrders(orderData:PizzaOrder):Observable<PizzaOrder>{
+    return this.http.post<PizzaOrder>(this.api,orderData)
   }
+}
+export interface PizzaOrder {
+  id?: string;          
+  base: string;
+  size: string;
+  toppings: string[];
 }

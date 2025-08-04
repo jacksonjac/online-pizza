@@ -71,7 +71,7 @@ pizzaToppings = [
 
   submitOrder() {
     if (this.orderForm.valid) {
-      console.log('✅ Pizza Order:', this.orderForm.value);
+      console.log('Pizza Order:', this.orderForm.value);
      
       this.service.postStubOrders(this.orderForm.value).subscribe(data =>{
         console.log("stored orders",data)
